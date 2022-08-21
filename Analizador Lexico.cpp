@@ -90,3 +90,233 @@ int main(){
 	system("pause");
 }
 
+
+
+//Estados
+	void Estados(){
+		
+		switch(Estado){
+			case 1:contadorVariables++;
+				break;
+			case 2:contadorVariables++;
+				break;
+			case 3:contadorPalabrasReservadas++;
+				break;
+			case 4:contadorNumeros++;
+				break;
+			case 5:contadorNumeros++;
+				break;
+			case 6:contadorNumeros++;
+				break;
+			case 7:contadorSignos++;
+				break;
+			case 8:contadorSignos++;
+				break;
+			case 9:contadorSimbolos++;
+				break;
+			case 10:contadorSignos++;
+				break;
+			case 11:contadorSimbolos++;
+				break;
+			case 12:contadorSimbolos++;
+				break;
+			case 13:contadorSimbolos++;
+				break;
+			case 14:contadorSimbolos++;
+				break;
+			case 15:contadorSimbolos++;
+				break;
+			case 16:contadorSimbolos++;
+				break;
+			case 17:contadorSignos++;
+				break;
+			case 18:contadorSignos++;
+				break;
+			case 19:contadorSimbolos++;
+				break;
+			case 20:contadorNumeros++;
+				break;
+				default:
+					break;
+		}
+		Estado =e0;
+	}
+	
+	
+	
+	
+//Analizador de los caracteres en el .txt
+void AnalizadorDeCaracter(char letra){
+	
+	if (letra=='{' || letra=='}'){
+		if (Estado==e0){
+			Estado=e1;
+		}
+		if (Estado==e2 || Estado==e3){
+		Estado=e0;
+		}
+		Estados();
+	}
+	
+	
+	if (letra=='(' || letra==')'){
+		if(Estado==e2 || Estado==e3 || Estado==e0 || Estado==e4 || Estado==e5 || Estado==e6){
+			Estado=e2;
+		}else if(Estado==e17){
+			Estado=e0;
+		}
+		Estados();
+	}
+	
+	
+	if(letra==';'||letra==','){
+		if(Estado==e2||Estado==e3||Estado==e4||Estado==e5||Estado==e6){
+			Estado=e0;
+		}
+		Estados();
+		
+	}
+	
+	
+	if( letra>='A' && letra<='Z' ){
+		if(Estado==e0){
+			Estado=e1;
+		}else if(Estado==e1||Estado==e2||Estado==e3||Estado==e19){
+			Estado=e2;
+		}
+		else if(Estado!=e0 && Estado!=e1 && Estado!=e2){
+			exit(-1);
+		}
+	}
+	
+	
+	if(letra >= 'a' && letra <= 'z'){
+		if(Estado == e0){
+			temp[0] = letra;
+			strcat(palabraIntegrada,temp);
+			Estado = e3;
+		}else if(Estado ==e1 || Estado == e2||Estado==e12|| Estado==e14||Estado==e18){
+			Estado = e2;
+		}else if(Estado == e3){
+			temp[0] = letra;
+			strcat(palabraIntegrada,temp);
+			Estado = e3;
+		}else{
+		exit(-1);
+		}
+	}	
+	
+	
+	if(letra<= '9' && letra >= '0')
+	{
+		if(Estado == e0){
+			Estado = e4;
+		}
+			else if(Estado == e4 || Estado == e5){
+			Estado = e5;
+		}
+			else if(Estado == e13 || Estado == e6){
+			Estado = e6;
+		}
+			else if(Estado == e1 || Estado == e2||Estado==e3){
+			Estado = e2;
+		}
+			else if(Estado == e7){
+			Estado = e4;
+		}
+		else{
+			exit(-1);
+		}
+	}
+	
+	
+	if(letra == '+'){
+		if(Estado == e0){
+			Estado = e8;
+		}
+		else if(Estado == e8){
+			Estado = e17;
+		}
+	}
+	
+	
+	if(letra == '.'){
+		if((letra) < '1' || (letra) >= '9'){
+			Estado = e19;
+		}
+		else{
+			if(Estado == e4 || Estado==e5 && ((letra) == '1' || (letra) == '2' || (letra) == '3' || (letra) == '4' || (letra) == '5' || (letra) == '6' || (letra) == '7' || (letra) == '8' || (letra) == '9')){
+				Estado = e20;
+			}
+			else if(Estado!= e4 && Estado!= e5){
+				exit(-1);
+			}
+		}
+	}
+	
+  
+	if(letra == '^')
+	{
+		if(Estado == e0)
+		{
+			Estado = e18;
+		}
+		else
+		{
+			exit(-1);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+
+

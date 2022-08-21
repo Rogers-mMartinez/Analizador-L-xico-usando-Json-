@@ -1,0 +1,13 @@
+
+
+---------- ANalisis de salida ----------
+
+Palabras Reservadas: 57566467
+Ciclos: 884408759
+Variables: 1862495858
+Numeros: 1852965742
+Aritmeticos: 1853162350
+Simbolos: 1828941414
+Encender: 57570563
+Apagado: 1845718638
+Condicional: 926056887
