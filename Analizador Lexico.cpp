@@ -1,7 +1,10 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <stdio.h>
 #include <fstream>
+#include <conio.h>
 
 using namespace std;
 
@@ -36,5 +39,54 @@ int contadorCiclos=0;
 int contadorCondicional=0;
 
 int main(){
+	FILE *archivoE;
+	FILE *archivoS;
+	printf("---------------- Analizador Lexico ----------------\n");
+	printf("Preparando archivo	\n");
+	archivoE=fopen("Entrada.txt","r");
+	archivoS=fopen("Salida.txt","wt");
 	
+	
+	char caracter;
+	//valida archivo existente
+	if (archivoE == NULL){
+		perror("ARCHIVO NO ENCONTRADO	\n");
+		return 1;
+	}else{
+		printf("ARCHIVO ENCONTRADO \n");
+		
+	}
+	
+	
+	while (1){
+		//itera caracter por caracter
+		caracter=fgetc(archivoE);
+		if (caracter==EOF){
+			break;
+		}
+		AnalizadorDeCaracter(caracter);
+		if(caracter==';'){
+			contadorSimbolos++;
+		}
+	}
+	i++;
+	
+	
+	//documento de salida
+	fputs("\n\n---------- ANalisis de salida ----------\n\n" , archivoS);
+	fprintf(archivoS, "Palabras Reservadas: %d", contadorPalabrasReservadas);
+	fprintf(archivoS, "\nCiclos: %d", contadorCiclos/2);
+	fprintf(archivoS, "\nVariables: %d", contadorVariables);
+	fprintf(archivoS, "\nNumeros: %d", contadorNumeros);
+	fprintf(archivoS, "\nAritmeticos: %d", contadorSignos);
+	fprintf(archivoS, "\nSimbolos: %d", contadorSimbolos);
+	fprintf(archivoS, "\nEncender: %d", contadorEncender);
+	fprintf(archivoS, "\nApagado: %d", contadorApagado);
+	fprintf(archivoS, "\nCondicional: %d", contadorCondicional/2);
+	
+	printf("\n");
+	printf("\n ARCHIVO DE SALIDA LISTO");
+	printf("\n");
+	system("pause");
 }
+
