@@ -1,4 +1,4 @@
-# Analizador-Lexico
+# Analizador-Lexico - Grupo 3
 Un analizador léxico haciendo uso de Json
 
 Integrantes del grupo:
