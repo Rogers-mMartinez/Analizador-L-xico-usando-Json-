@@ -255,64 +255,80 @@ void AnalizadorDeCaracter(char letra){
 	}
 	
   
-	if(letra == '^')
-	{
-		if(Estado == e0)
-		{
+	if(letra == '^'){
+		if(Estado == e0){
 			Estado = e18;
 		}
-		else
-		{
+		else{
 			exit(-1);
 		}
 	}
 	
 	
 	
+	if(letra == '-'){
+		if(Estado == e0){
+			Estado = e7;
+		}
+		else if(Estado == e12){
+			Estado = e10;
+			}
+	}
+	else if(Estado == e7){
+		Estado = e17;
+	}
+	
+	
+	if(letra == '='){
+		if(Estado == e0){
+			Estado = e9;
+		}
+		else if(Estado == e18){
+			Estado = e11;
+		}
+	}
+	else if(Estado == e12){
+		Estado = e16;
+	}else if(Estado == e13){
+		Estado = e15;
+	}
+	
+	
+	if(letra=='/'||letra=='*'){
+		if(Estado==e0||Estado==e2||Estado==e3){
+			Estado=e18;
+		}else{
+			exit(-1);
+		}
+	}
+	
+	
+	if(letra=='<'){
+		if(Estado==e0||Estado==e3||Estado==e2){
+			Estado=e12;
+		}else{
+			exit(-1);
+		}
+	}
+	
+	
+	if(letra=='>'){
+		if(Estado==e0||Estado==e2||Estado==e3){
+			Estado=e14;
+		}else{
+			exit(-1);
+		}
+	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	if(letra=='!'){
+		if(Estado==e0){
+			Estado=e18;
+		}else{
+			exit(-1);
+		}
+	}
 	
 	
 }
@@ -320,3 +336,38 @@ void AnalizadorDeCaracter(char letra){
 
 
 
+void Reservadas(){
+		for(int i=0;i<IndicadorTam;i++){
+			//strcmp se encarga de comparar caracter por caracter dos Strings
+			//reservadas[i] son las palabras reservadas que declaramos como variable global al inicio del programa
+			//identificados es la palabra que el analizador lexico encontro
+			if(strcmp(reservadas[i],palabraIntegrada)==0){
+				//Contar Encender
+				if(strcmp(reservadas[0],palabraIntegrada)==0)
+					contadorEncender++;
+				//Contar Apagar
+				if(strcmp(reservadas[1],palabraIntegrada)==0)
+					contadorApagado++;
+				
+				//Contar Ciclo Repetir
+				if(strcmp(reservadas[4],palabraIntegrada)==0)
+					contadorCiclos++;
+				
+				//Contar Ciclo Mientras
+				if(strcmp(reservadas[6],palabraIntegrada)==0)
+					contadorCiclos++;
+				
+				//Contar Condicional
+				if(strcmp(reservadas[7],palabraIntegrada)==0)
+					contadorCondicional++;
+				
+				//Cuenta las palabras reservadas que encuentre
+				contadorPalabrasReservadas++;
+				palabraIntegrada[0]='\0';
+				break;
+			}
+			if(i==(IndicadorTam)-1){
+				exit(-1);
+			}
+		}
+    }
